@@ -18,6 +18,5 @@
     "helmet": "^4.4.1",
     "knex": "^0.95.1",
     "sqlite3": "^5.0.2"
-  },
-  "proxy": "http://localhost:4001"
+  }
 }
