@@ -1,0 +1,8 @@
+.table-item {
+  display: grid;
+  grid-template-columns: 5% 15% 10% 20% 10% 12.5% 12.5% 15%;
+  grid-gap: 1px;
+  & div {
+    padding: 1rem;
+  };
+}

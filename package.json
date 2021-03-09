@@ -1,0 +1,23 @@
+{
+  "name": "server-side",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "heroku-postbuild": "cd react-ui && npm install --only=dev && npm install && npm run build"
+  },
+  "author": "orgnitro",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "helmet": "^4.4.1",
+    "knex": "^0.95.1",
+    "sqlite3": "^5.0.2"
+  },
+  "proxy": "http://localhost:4001"
+}
