@@ -19,12 +19,12 @@ const getDataFromJSON = async (json, route) => {
 
   for (let i = 1; i < dataJSON.length; i++) {
     if (i % 500 === 0) {
-      await axios.post(`http://localhost:4001/users/${route}`, {
+      await axios.post(`/users/${route}`, {
         'data': dataJSON.slice(i - 500, i)
       })
     }
     if ((dataJSON.length - i) < 500) {
-      await axios.post(`http://localhost:4001/users/${route}`, {
+      await axios.post(`/users/${route}`, {
         'data': dataJSON.slice(i - 1)
       })
       break

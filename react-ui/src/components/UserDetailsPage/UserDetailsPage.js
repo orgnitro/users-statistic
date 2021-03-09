@@ -12,8 +12,8 @@ const UserDetailsPage = (props) => {
   const [plotData, setPlotData] = useState(null)
 
   const getData = async (id) => {
-    const name = await axios.get(`http://localhost:4001/users/conditionSearch/users/first_name&last_name/id/${id}`);
-    const activities = await axios.post(`http://localhost:4001/users/viewsAndClicks`, {
+    const name = await axios.get(`/users/conditionSearch/users/first_name&last_name/id/${id}`);
+    const activities = await axios.post(`/users/viewsAndClicks`, {
       'select': ['users_statistic.date', 'users_statistic.page_views', 'users_statistic.clicks'],
       'ids': [id]
     });

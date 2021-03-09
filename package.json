@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "heroku-postbuild": "cd react-ui && npm install --only=dev && npm install && npm run build"
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "author": "orgnitro",
   "license": "ISC",
@@ -17,6 +17,7 @@
     "express": "^4.17.1",
     "helmet": "^4.4.1",
     "knex": "^0.95.1",
+    "path": "^0.12.7",
     "sqlite3": "^5.0.2"
   }
 }

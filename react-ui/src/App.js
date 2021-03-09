@@ -13,15 +13,15 @@ const App = () => {
 
   const getData = useCallback(async () => {
     if (data.length) {return};
-    let getAllUsers = await axios.get('http://localhost:4001/users/getFromTable/users/*');
+    let getAllUsers = await axios.get('/users/getFromTable/users/*');
     if (getAllUsers.data.length === 0) {
       let usersFromJSON = await getDataFromJSON('./data/users.json', 'addUsers');
-      let getAllUsers = await axios.get('http://localhost:4001/users/getFromTable/users/*');
+      let getAllUsers = await axios.get('/users/getFromTable/users/*');
       setData(getAllUsers.data);
     } else {
       setData(getAllUsers.data);
     }
-    let getAllStats = await axios.get('http://localhost:4001/users/getFromTable/users_statistic/*');
+    let getAllStats = await axios.get('/users/getFromTable/users_statistic/*');
     if (getAllStats.data.length === 0) {
       let usersFromJSON = await getDataFromJSON('./data/users_statistic.json', 'addUsersStatistic');
     }
