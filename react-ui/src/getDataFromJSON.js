@@ -8,7 +8,11 @@ const getDataFromJSON = async (json, route) => {
     }
   })
 
+  // Takes json file
+
   let dataJSON = await dataStream.json();
+
+  // Sorts data from users_statistic.json file by IDs 
 
   if (json === './data/users_statistic.json') {
     let sortedArray = await dataJSON.sort((a, b) => {
@@ -16,6 +20,9 @@ const getDataFromJSON = async (json, route) => {
     });
     dataJSON = sortedArray
   }
+
+  // We could not write too much data to database at a time, 
+  // and have to split data to small chunks
 
   for (let i = 1; i < dataJSON.length; i++) {
     if (i % 500 === 0) {

@@ -10,12 +10,16 @@ import axios from 'axios'
 
 const App = () => {
   const [data, setData] = useState([])
+  
+  // When the react app is started, getData function checks if 
+  // all necessary information is in database. If not. it loads it 
+  // to the database. Downloaded data then used in child elements
 
   const getData = useCallback(async () => {
     if (data.length) {return};
     let getAllUsers = await axios.get('/users/getFromTable/users/*');
     if (getAllUsers.data.length === 0) {
-      let usersFromJSON = await getDataFromJSON('./data/users.json', 'addUsers');
+      await getDataFromJSON('./data/users.json', 'addUsers');
       let getAllUsers = await axios.get('/users/getFromTable/users/*');
       setData(getAllUsers.data);
     } else {
@@ -23,7 +27,7 @@ const App = () => {
     }
     let getAllStats = await axios.get('/users/getFromTable/users_statistic/*');
     if (getAllStats.data.length === 0) {
-      let usersFromJSON = await getDataFromJSON('./data/users_statistic.json', 'addUsersStatistic');
+      await getDataFromJSON('./data/users_statistic.json', 'addUsersStatistic');
     }
   }, [data])
 

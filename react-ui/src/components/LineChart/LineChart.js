@@ -1,6 +1,7 @@
 import React from 'react'
 import { Line } from 'react-chartjs-2'
 
+
 const LineChart = ({xData, yData }) => {
   return (
     <Line
@@ -10,12 +11,9 @@ const LineChart = ({xData, yData }) => {
         borderColor: '#3A80BA',
         data: yData,
         fill: false
-      }
-      ]
+      }]
     }}
-    // height={"100%"}
     options={{
-      // responsive: true,
       maintainAspectRatio: false,
       legend: {
         display: false
@@ -27,7 +25,6 @@ const LineChart = ({xData, yData }) => {
       }
     }}
   />
-
   )
 }
 

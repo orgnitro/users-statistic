@@ -5,31 +5,38 @@ import './UserDetailsPage.scss'
 import LineChart from '../LineChart/LineChart'
 import StatsFooter from '../StatsFooter/StatsFooter'
 
+
 const UserDetailsPage = (props) => {
   const userid = props.match.params.userid
   const [userData, setUserData] = useState(null)
   const [filter, setFilter] = useState([])
   const [plotData, setPlotData] = useState(null)
 
-  const getData = async (id) => {
+  async function getUserDetails(id) {
+
+    // Loads detailed info about user, and set default values for date filter
+
     const name = await axios.get(`/users/conditionSearch/users/first_name&last_name/id/${id}`);
     const activities = await axios.post(`/users/viewsAndClicks`, {
       'select': ['users_statistic.date', 'users_statistic.page_views', 'users_statistic.clicks'],
       'ids': [id]
     });
+
     const user = {
       first_name: name.data[0].first_name,
       last_name: name.data[0].last_name,
       activities: activities.data
     }
+
     setUserData(user)
 
     let filterDefault_to = new Date(user.activities[user.activities.length - 1].date)
     let filterDefault_from = new Date(filterDefault_to - 8.64e7 * 7);
+
     setFilter([filterDefault_from, filterDefault_to])
   }
 
-  const settingPlotData = (userData, dateFilter) => {
+  async function settingPlotData(userData, dateFilter) {
     if (!userData) {
       return
     } else {
@@ -37,6 +44,7 @@ const UserDetailsPage = (props) => {
       let xValues = []
       let yValues = []
       let plotData = userData.activities;
+
       if ((dateFilter.length === 0)) {
         to = new Date(plotData[plotData.length - 1].date)
         from = new Date(to - 8.64e7 * 7);
@@ -65,12 +73,13 @@ const UserDetailsPage = (props) => {
 
 
   useEffect(() => {
-    getData(userid)
+    getUserDetails(userid)
   }, [userid])
 
   useEffect(() => {
     settingPlotData(userData, filter)
   }, [userData, filter])
+
   return (
     <Fragment>
       <div className="user-details wrapper">

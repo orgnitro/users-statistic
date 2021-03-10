@@ -15,15 +15,23 @@ const StatsPage = ({ data }) => {
   const [visibleButtons, setVisibleButtons] = useState([]);
   const [activeButton, setActiveButton] = useState(1);
 
+  // getTableData aims to loads and calculates additional info about 
+  // clicks and page views for the current page
+  
+
   const getTableData = useCallback(async (page_id) => {
     if (visibleData.length === 0) {
       return
     };
+
     let currentPage = visibleData.slice((page_id - 1) * 50, page_id * 50)
     let query = await axios.post(`http://localhost:4001/users/viewsAndClicks`, {
       'select': ['users_statistic.user_id', 'users_statistic.page_views', 'users_statistic.clicks'],
       'ids': currentPage.map(item => item.id)
     })
+
+    // Here total clicks and views are calculated
+
     if (query || query.data.length !== 0) {
       let total = await query.data.reduce((acc, curr) => {
         if (curr.user_id === acc[acc.length - 1].user_id) {
@@ -77,6 +85,9 @@ const StatsPage = ({ data }) => {
       setVisibleData(data)
       return
     }
+
+    // I use pagesID and visibleButtons states for routing
+
     let pages_ids = [];
     for (let i = 1; i <= Math.ceil(visibleData.length / 50); i++) {
       pages_ids.push(i);
@@ -88,7 +99,9 @@ const StatsPage = ({ data }) => {
     } else {
       setVisibleButtons(pages_ids);
     }
-    getTableData(1)
+
+    getTableData(1);
+
   }, [data, visibleData, getTableData]);
 
 
