@@ -23,8 +23,8 @@ exports.getFromTable = async (req, res) => {
 exports.viewsAndClicks = async (req, res) => {
   knex('users')
     .join('users_statistic', 'users_statistic.user_id', '=', 'users.id')
-    .select(...req.body.select)
-    .whereIn('user_id', req.body.ids)
+    .select(req.params.select.split('&'))
+    .whereIn('user_id', req.params.ids.split('&'))
 
     .then(response => res.json(response))
     .catch(err => {

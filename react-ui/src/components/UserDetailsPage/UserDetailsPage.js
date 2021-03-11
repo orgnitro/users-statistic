@@ -17,11 +17,9 @@ const UserDetailsPage = (props) => {
     // Loads detailed info about user, and set default values for date filter
 
     const name = await axios.get(`/users/conditionSearch/users/first_name&last_name/id/${id}`);
-    const activities = await axios.post(`/users/viewsAndClicks`, {
-      'select': ['users_statistic.date', 'users_statistic.page_views', 'users_statistic.clicks'],
-      'ids': [id]
-    });
-
+    const activities = await axios.get(`/users/viewsAndClicks/
+    users_statistic.date&users_statistic.page_views&users_statistic.clicks/${id}`);
+    
     const user = {
       first_name: name.data[0].first_name,
       last_name: name.data[0].last_name,
