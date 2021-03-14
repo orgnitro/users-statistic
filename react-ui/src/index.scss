@@ -30,12 +30,12 @@ body, body::after {
 }
 
 .wrapper {
-  padding: 0 5rem;
+  padding: 0 6vw;
 }
 
 @media (max-width: 768px) {
   .wrapper {
-    padding: 0 5vw;
+    padding: 0 3vw;
   }
 }
 

@@ -9,7 +9,7 @@ const TableRow = ({ pageToRender }) => {
       blankTable.push(
         <div key={i} className="table-content">
           <div className="table-item">
-            <div className="user-id">{i}</div>
+            <div className="user-id">...</div>
             <div className="user-fname">Loading...</div>
             <div className="user-lname">Loading...</div>
             <div className="user-email">Loading...</div>

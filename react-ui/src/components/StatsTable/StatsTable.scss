@@ -43,13 +43,13 @@
 
 @media (max-width: 768px) {
   .table-header {
-    grid-template-columns: 4% 12% 13% 28% 8% 12% 11% 12%;
+    grid-template-columns: 5% 12% 13% 28% 8% 13% 9% 12%;
     & div {
       padding: 1vw;
     }
   }
 
   .stats-table {
-    font-size: 1.3vw;
+    font-size: 1.5vw;
   }
 }

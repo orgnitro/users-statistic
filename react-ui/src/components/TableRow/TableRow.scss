@@ -1,8 +1,23 @@
 .table-item {
   display: grid;
-  grid-template-columns: 5% 15% 10% 20% 10% 12.5% 12.5% 15%;
+  grid-template-columns: 5% 15% 11% 22% 10% 12.5% 11.5% 13%;
   grid-gap: 1px;
   & div {
-    padding: 1rem;
-  };
+    padding: 1vw;
+  }
+}
+
+@media (max-width: 1068px) {
+  .table-item {
+    grid-template-columns: 5% 12% 13% 23% 10% 12.5% 11.5% 13%;
+  }
+}
+
+@media (max-width: 768px) {
+  .table-item {
+    grid-template-columns: 5% 12% 13% 28% 8% 13% 9% 12%;
+    & div {
+      padding: 1.2vw;    
+    }
+  }
 }

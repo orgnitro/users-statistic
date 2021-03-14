@@ -24,8 +24,13 @@ p.description {
     background: #fff;
     font-size: 20px;
     border: none;
-    border-radius: 8px;
+    border-radius: 5px;
     padding: 15px;
+    cursor: pointer;
+    transition: all 0.3s;
+    &:active {
+      transform: scale(0.98);
+    }
   }
   & span {
     font-weight: bold;
@@ -238,7 +243,7 @@ p.description {
       font-size: 2vw;
       width: 90%;
     }
-}
+  }
 
   .phone-outer img {
     display: none;

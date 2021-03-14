@@ -25,10 +25,6 @@ const StatsPage = ({ data }) => {
     };
 
     let currentPage = visibleData.slice((page_id - 1) * 50, page_id * 50)
-    // let query = await axios.post(`http://localhost:4001/users/viewsAndClicks`, {
-    //   'select': ['users_statistic.user_id', 'users_statistic.page_views', 'users_statistic.clicks'],
-    //   'ids': currentPage.map(item => item.id)
-    // })
     let select = 'users_statistic.user_id&users_statistic.page_views&users_statistic.clicks';
     let ids = currentPage.map(item => item.id).join('&')
     let query = await axios.get(`/users/viewsAndClicks/${select}/${ids}`)
@@ -85,6 +81,7 @@ const StatsPage = ({ data }) => {
   }, 500)
 
   useEffect(() => {
+    console.log(visibleData);
     if (visibleData.length === 0) {
       setVisibleData(data)
       return
@@ -103,10 +100,11 @@ const StatsPage = ({ data }) => {
     } else {
       setVisibleButtons(pages_ids);
     }
-
-    getTableData(1);
-
   }, [data, visibleData, getTableData]);
+
+  useEffect(() => {
+    getTableData(1)
+  }, [getTableData])
 
 
   return (

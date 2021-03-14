@@ -9,15 +9,6 @@
   }
 }
 
-.table-item {
-  display: grid;
-  grid-template-columns: 5% 15% 11% 22% 10% 12.5% 11.5% 13%;
-  grid-gap: 1px;
-  & div {
-    padding: 1rem;
-  }
-}
-
 .header-and-search {
   display: flex;
   justify-content: space-between;
@@ -31,10 +22,6 @@
 }
 
 @media (max-width: 1068px) {
-  .table-item {
-    grid-template-columns: 5% 12% 13% 23% 10% 12.5% 11.5% 13%;
-  }
-
   .users-list {
     h2 {
       font-size: 2rem;
@@ -46,12 +33,6 @@
 }
 
 @media (max-width: 768px) {
-  .table-item {
-    grid-template-columns: 4% 12% 13% 28% 8% 12% 11% 12%;
-    & div {
-      padding: 1.5vw;    
-    }
-  }
   .header-and-search input[type=text] {
     height: 30px;
     font-size: 1.7vw;
