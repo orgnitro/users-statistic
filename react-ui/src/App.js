@@ -3,7 +3,7 @@ import MainPage from './components/MainPage/MainPage';
 import Logo from './components/Logo/Logo';
 import StatsPage from './components/StatsPage/StatsPage';
 import UserDetailsPage from './components/UserDetailsPage/UserDetailsPage'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { HashRouter as Router, Switch, Route } from 'react-router-dom'
 import getDataFromJSON from './getDataFromJSON'
 import axios from 'axios'
 
