@@ -83,9 +83,6 @@ const StatsPage = ({ data }) => {
       setFilteredData(result.flat())
     } else {
       setFilteredData(data)
-      const userNotFoundAttention = document.querySelector('p.user-not-found')
-      userNotFoundAttention.style.opacity = 1
-      setTimeout(() => userNotFoundAttention.style.opacity = 0, 1000)
     }
   }, 1000)
 
