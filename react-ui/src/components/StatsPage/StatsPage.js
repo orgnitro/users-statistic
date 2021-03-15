@@ -9,7 +9,7 @@ import axios from 'axios';
 
 
 const StatsPage = ({ data }) => {
-  const [visibleData, setVisibleData] = useState(data)
+  const [filteredData, setFilteredData] = useState(data)
   const [pagesID, setPagesID] = useState([]);
   const [pageToRender, setPageToRender] = useState(null);
   const [visibleButtons, setVisibleButtons] = useState([]);
@@ -17,18 +17,17 @@ const StatsPage = ({ data }) => {
 
   // getTableData aims to loads and calculates additional info about 
   // clicks and page views for the current page
-  
+
 
   const getTableData = useCallback(async (page_id) => {
-    if (visibleData.length === 0) {
+    if (filteredData.length === 0) {
       return
     };
 
-    let currentPage = visibleData.slice((page_id - 1) * 50, page_id * 50)
+    let currentPage = filteredData.slice((page_id - 1) * 50, page_id * 50)
     let select = 'users_statistic.user_id&users_statistic.page_views&users_statistic.clicks';
     let ids = currentPage.map(item => item.id).join('&')
     let query = await axios.get(`/users/viewsAndClicks/${select}/${ids}`)
-
 
     // Here total clicks and views are calculated
 
@@ -50,10 +49,12 @@ const StatsPage = ({ data }) => {
         page_views: query.data[0].page_views,
         clicks: query.data[0].clicks
       }]);
-
       setPageToRender(
         currentPage.map((item) => {
           let clicks_views = total.find(elem => elem.user_id === item.id)
+          if (!clicks_views) {
+            return []
+          }
           return {
             ...item,
             total_views: clicks_views.page_views,
@@ -62,7 +63,7 @@ const StatsPage = ({ data }) => {
         })
       )
     }
-  }, [visibleData])
+  }, [filteredData])
 
   const searchByName = debounce((text) => {
     if (text.trim()) {
@@ -74,23 +75,30 @@ const StatsPage = ({ data }) => {
         })
         result.push(match)
       })
-      setVisibleData(result.flat())
+      if (result.flat().length === 0) {
+        const userNotFoundAttention = document.querySelector('p.user-not-found')
+        userNotFoundAttention.style.opacity = 1
+        setTimeout(() => userNotFoundAttention.style.opacity = 0, 1000)
+      }
+      setFilteredData(result.flat())
     } else {
-      setVisibleData(data)
+      setFilteredData(data)
+      const userNotFoundAttention = document.querySelector('p.user-not-found')
+      userNotFoundAttention.style.opacity = 1
+      setTimeout(() => userNotFoundAttention.style.opacity = 0, 1000)
     }
-  }, 500)
+  }, 1000)
 
   useEffect(() => {
-    console.log(visibleData);
-    if (visibleData.length === 0) {
-      setVisibleData(data)
+    if (filteredData.length === 0) {
+      setFilteredData(data)
       return
     }
 
     // I use pagesID and visibleButtons states for routing
 
     let pages_ids = [];
-    for (let i = 1; i <= Math.ceil(visibleData.length / 50); i++) {
+    for (let i = 1; i <= Math.ceil(filteredData.length / 50); i++) {
       pages_ids.push(i);
     }
     setPagesID(pages_ids);
@@ -100,11 +108,11 @@ const StatsPage = ({ data }) => {
     } else {
       setVisibleButtons(pages_ids);
     }
-  }, [data, visibleData, getTableData]);
+  }, [data, filteredData, getTableData]);
 
   useEffect(() => {
     getTableData(1)
-  }, [getTableData])
+  }, [getTableData, data])
 
 
   return (
@@ -119,11 +127,14 @@ const StatsPage = ({ data }) => {
 
         <div className="header-and-search">
           <h2>Users statistics</h2>
-          <input
-            type="text"
-            placeholder="Enter the name..."
-            onChange={(e) => searchByName(e.target.value)}
-          />
+          <div className="search-by-name">
+            <p className="user-not-found">User not found</p>
+            <input
+              type="text"
+              placeholder="Enter the name..."
+              onChange={(e) => searchByName(e.target.value)}
+            />
+          </div>
         </div>
 
         <StatsTable
