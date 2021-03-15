@@ -1,5 +1,4 @@
 import React from 'react'
-import './PrevPages.scss'
 import PrevImage from '../../assets/images/prev.png'
 
 const PrevPages = ({visibleButtons, handler}) => {

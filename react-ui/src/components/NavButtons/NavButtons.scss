@@ -1,9 +1,8 @@
+@import "../../constants";
+
 .navigation {
+  @include flexbox-row;
   margin-top: 20px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
   margin-bottom: 10px;
 }
 
@@ -12,21 +11,19 @@
 }
 
 .navigation-button {
-  color: #3A80BA;
-  background: #fff;
+  @include white-theme;
   font-size: 1rem;
   border: 2px solid #e5e5e5;
-  border-radius: 8px;
+  border-radius: $db-radius;
   padding: 15px;
   margin: 0.4vw;
 }
 
 .navigation-button-active {
-  background: #3A80BA;
-  color: #fff;
+  @include blue-theme;
   font-size: 1rem;
-  border: 2px solid #3A80BA;
-  border-radius: 8px;
+  border: 2px solid $mainblue;
+  border-radius: $db-radius;
   padding: 15px;
 }
 

@@ -1,26 +1,15 @@
+@import "../../constants";
+
 .stats-footer {
+  @include flexbox-row;
+  @include darkblue-theme;
   margin-bottom: 0;
   padding-bottom: 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
   height: 55px;
-  background: #1C3B55;
-  color: #fff;
-  & h3 {
-    font-size: 1.5rem;
-    font-weight: normal;
+  & p {
+    @include p-font;
   }
-}
-
-@media (max-width: 768px) {
-  .stats-footer {
-    p {
-      font-size: 2vw;
-    }
-    h3 {
-      font-size: 4vw;
-    }
+  & h3 {
+    @include h3-font;
   }
 }

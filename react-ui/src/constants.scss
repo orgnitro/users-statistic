@@ -1,0 +1,67 @@
+$mainblue: #3a80ba;
+$radius: 5px;
+$db-radius: 10px;
+
+@mixin blue-theme {
+  background: $mainblue;
+  color: #fff;
+}
+
+@mixin white-theme {
+  background: #fff;
+  color: $mainblue;
+}
+
+@mixin darkblue-theme {
+  background: #1C3B55;
+  color: #fff;
+}
+
+@mixin flexbox-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin h3-font {
+  font-size: 2rem;
+  font-weight: normal;
+  @media (max-width: 768px) {
+    font-size: 3.5vw;
+  }
+  @media (max-width: 480px) {
+    font-size: 4vw;
+  }
+}
+
+@mixin p-font {
+  font-size: 1.5vw;
+  @media (max-width: 768px) {
+    font-size: 1.8vw;
+  }
+  @media (max-width: 480px) {
+    font-size: 2.5vw;
+  }
+}
+
+@mixin grid {
+  display: grid;
+  grid-template-columns: 5% 15% 11% 22% 10% 12.5% 11.5% 13%;
+  grid-gap: 1px;
+  & div {
+    padding: 1rem;
+  }
+  @media (max-width: 1028px) {
+    grid-template-columns: 5% 12% 13% 23% 10% 12.5% 11.5% 13%;
+    & div {
+      padding: 0.5rem;
+    }
+  }
+  @media (max-width: 768px) {
+    grid-template-columns: 5% 12% 13% 28% 8% 13% 9% 12%;
+    & div {
+      padding: 1vw;
+    }
+  }
+}

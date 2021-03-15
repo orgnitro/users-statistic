@@ -1,5 +1,4 @@
 import React from 'react'
-import './NextPages.scss'
 import NextImage from '../../assets/images/next.png'
 
 const NextPages = ({pagesID, visibleButtons, handler}) => {
