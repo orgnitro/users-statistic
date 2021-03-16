@@ -1,16 +1,26 @@
-import {GET_MAIN_DATA} from '../actions/types'
+import { GET_MAIN_DATA, SET_PAGES_ID } from '../actions/types'
 
 
 const initialState = {
-  mainUserData: []
+  mainUserData: [],
+  pagesID: [],
 }
 
- export const dataReducer = (state = initialState, action) => {
+export default function data(state = initialState, action) {
   switch (action.type) {
-    case GET_MAIN_DATA: 
-    return {
-      mainUserData: action.payload
-    }
+
+    case GET_MAIN_DATA:
+      return {
+        ...state,
+        mainUserData: action.payload
+      }
+
+      case SET_PAGES_ID:
+        return {
+          ...state,
+          pagesID: action.payload
+        }
+        
     default:
       return state;
   }

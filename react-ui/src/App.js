@@ -5,11 +5,11 @@ import StatsPage from './components/StatsPage/StatsPage';
 import UserDetailsPage from './components/UserDetailsPage/UserDetailsPage'
 import { HashRouter as Router, Switch, Route } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { getMainData } from './redux/actions/actions' 
+import { getMainData } from './redux/actions' 
 
 
 const App = () => {
-  const data = useSelector(state => state.dataReducer.mainUserData)
+  const data = useSelector(state => state.data.mainUserData)
   const dispatch = useDispatch()
 
   useEffect(() => {

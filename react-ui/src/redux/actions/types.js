@@ -1,1 +1,6 @@
 export const GET_MAIN_DATA = 'GET_MAIN_DATA';
+export const ADD_TOTAL_INFO = 'ADD_TOTAL_INFO';
+export const SET_VISIBLE_BUTTONS = 'SET_VISIBLE_BUTTONS';
+export const SET_ACTIVE_BUTTON = 'SET_ACTIVE_BUTTON';
+export const SET_PAGE_TO_RENDER = 'SET_PAGE_TO_RENDER';
+export const SET_PAGES_ID = 'SET_PAGES_ID';

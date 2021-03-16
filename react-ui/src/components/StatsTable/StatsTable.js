@@ -2,7 +2,7 @@ import React from 'react'
 import './StatsTable.scss'
 import TableRow from '../TableRow/TableRow'
 
-const StatsTable = ({ pageToRender }) => {
+const StatsTable = () => {
     return (
       <div className="stats-table">
         <div className="table-header">
@@ -17,7 +17,7 @@ const StatsTable = ({ pageToRender }) => {
         </div>
 
         <div className="table-content">
-          <TableRow pageToRender={pageToRender} />
+          <TableRow />
         </div>
       </div>
     )

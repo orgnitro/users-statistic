@@ -1,35 +1,38 @@
 import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { setActiveButton } from '../../redux/actions'
 import './NavButtons.scss'
 import PrevPages from '../PrevPages/PrevPages'
 import NextPages from '../NextPages/NextPages'
 
-const NavButtons = (props) => {
+
+const NavButtons = ({ getTableData }) => {
+  const dispatch = useDispatch()
+  const visibleButtons = useSelector(state => state.button.visibleButtons)
+  const activeButton = useSelector(state => state.button.activeButton)
+
+  const goToPage = page_id => {
+    getTableData(page_id);
+    dispatch(setActiveButton(page_id));
+  }
   return (
     <div className="navigation">
-      <PrevPages
-        visibleButtons={props.visibleButtons}
-        handler={props.prevHandler}
-        render={props.pageToRender}
-      />
+
+      <PrevPages getTableData={getTableData} />
+
       <div className="numeric-buttons">
-        {props.visibleButtons.map(id => {
-          return (
-            
-              <button
-                key={id}
-                onClick={() => props.goToPageHandler(id)}
-                className={`navigation-button${props.activeButton === id ? '-active' : ''}`}
-              >
-                {id}
-              </button>
-          )
-        })}
+        {visibleButtons.map(id => (
+          <button
+            key={id}
+            onClick={() => goToPage(id)}
+            className={`navigation-button${activeButton === id ? '-active' : ''}`}
+          >
+            {id}
+          </button>
+        ))}
       </div>
-      <NextPages
-        pagesID={props.pagesID}
-        visibleButtons={props.visibleButtons}
-        handler={props.nextHandler}
-      />
+
+      <NextPages getTableData={getTableData} />
     </div>
   )
 }

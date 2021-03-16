@@ -1,6 +1,10 @@
 import { combineReducers } from 'redux'
-import { dataReducer } from './dataReducer'
+import data from './dataReducer'
+import page from './pagesReducer'
+import button from './buttonsReducer'
 
 export default combineReducers({
-  dataReducer
+  data,
+  page,
+  button
 })

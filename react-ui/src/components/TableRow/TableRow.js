@@ -1,8 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import './TableRow.scss'
 
-const TableRow = ({ pageToRender }) => {
+const TableRow = () => {
+  const pageToRender = useSelector(state => state.page.pageToRender)
+
   if (!pageToRender || typeof pageToRender[0] === 'undefined') {
     let blankTable = []
     for (let i = 1; i <= 10; i++) {
