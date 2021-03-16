@@ -1,14 +1,17 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import axios from 'axios';
 import { debounce } from 'lodash'
+import { Link } from 'react-router-dom'
 import NavButtons from '../NavButtons/NavButtons';
 import StatsTable from '../StatsTable/StatsTable'
 import StatsFooter from '../StatsFooter/StatsFooter'
 import './StatsPage.scss'
-import axios from 'axios';
 
 
-const StatsPage = ({ data }) => {
+const StatsPage = () => {
+  const data = useSelector(state => state.dataReducer.mainUserData)
+
   const [filteredData, setFilteredData] = useState(data)
   const [pagesID, setPagesID] = useState([]);
   const [pageToRender, setPageToRender] = useState(null);
