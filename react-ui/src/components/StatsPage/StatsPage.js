@@ -24,7 +24,7 @@ const StatsPage = () => {
       let select = 'users_statistic.user_id&users_statistic.page_views&users_statistic.clicks';
       let ids = currentPage.map(item => item.id).join('&')
       let query = await axios.get(`/users/viewsAndClicks/${select}/${ids}`)
-
+      console.log(query.data)
       // Here total clicks and views are calculated
 
       if (query || query.data.length !== 0) {
